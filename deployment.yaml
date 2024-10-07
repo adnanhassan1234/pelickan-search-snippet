@@ -1,0 +1,113 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vultture-search-snippet
+  namespace: vultture
+spec:
+  selector:
+    matchLabels:
+      app: vultture-search-snippet-app
+      version: "1"
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: vultture-search-snippet-app
+        version: "1"
+    spec:
+      containers:
+        - name: vultture-search-snippet-container
+          image: harbor.qmhtech.com/qmhdocker/vultturesnippet:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+              protocol: TCP
+      imagePullSecrets:
+        - name: regcred
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: vultture-search-snippet-svc
+  namespace: vultture
+spec:
+  selector:
+    app: vultture-search-snippet-app
+  ports:
+    - protocol: TCP
+      name: http
+      port: 8090
+      targetPort: 3000
+  type: NodePort
+
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-vultture-search-snippet
+  namespace: vultture
+spec:
+  hosts:
+    - snippet.test.pelickandespatch.com
+  gateways:
+    - istio-system/http-gateway
+  http:
+    - match:
+        - uri:
+      route:
+        - destination:
+            host: vultture-search-snippet-svc
+            port:
+              number: 8090
+---
+# apiVersion: networking.istio.io/v1beta1
+# kind: VirtualService
+# metadata:
+#     kubectl.kubernetes.io/last-applied-configuration: >
+#       {"apiVersion":"networking.istio.io/v1alpha3","kind":"VirtualService","metadata":{"annotations":{},"name":"vs-vultture-search-snippet","namespace":"vultture"},"spec":{"gateways":["istio-system/http-gateway"],"hosts":["snippet.test.pelickandespatch.com"],"http":[{"match":[{"uri":null}],"route":[{"destination":{"host":"vultture-search-snippet-svc","port":{"number":8090}}}]}]}}
+#   creationTimestamp: '2023-08-30T07:38:30Z'
+#   generation: 5
+#   managedFields:
+#     - apiVersion: networking.istio.io/v1alpha3
+#       fieldsType: FieldsV1
+#       fieldsV1:
+#         f:metadata:
+#           f:annotations:
+#             .: {}
+#             f:kubectl.kubernetes.io/last-applied-configuration: {}
+#         f:spec: {}
+#       manager: kubectl-client-side-apply
+#       operation: Update
+#       time: '2023-08-30T07:38:30Z'
+#     - apiVersion: networking.istio.io/v1beta1
+#       fieldsType: FieldsV1
+#       fieldsV1:
+#         f:spec:
+#           f:gateways: {}
+#           f:hosts: {}
+#           f:http: {}
+#       manager: agent
+#       operation: Update
+#       time: '2023-09-08T15:39:14Z'
+#   name: vs-vultture-search-snippet
+#   namespace: vultture
+#   resourceVersion: '10674069'
+#   uid: e8429960-f72f-4650-9b72-1a5885d2086a
+# spec:
+#   gateways:
+#     - istio-system/http-gateway
+#   hosts:
+#     - snippet.test.pelickandespatch.com
+#   http:
+#     - match:
+#         - port: 443
+#       route:
+#         - destination:
+#             host: vultture-search-snippet-svc
+#             port:
+#               number: 8090

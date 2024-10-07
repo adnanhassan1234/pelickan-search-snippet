@@ -1,0 +1,7 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+bases:
+  - ../base
+resources:
+  - vultture_web_frontend/deployment.yaml
+  - vs/vs.yaml

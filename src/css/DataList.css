@@ -1,0 +1,81 @@
+:root {
+  --datalist-detail-backgroundColor: #162339;
+  --datalist-detail-backgroundColor-nested-l1: #2e3e5b;
+  --datalist-detail-backgroundColor-nested-l2: #394864;
+  --datalist-normal-form-font-size: 18px;
+  --datalist-icon-form-font-size: 14px;
+  --form-font-color: #fff;
+  --form--svg--width: 11px;
+}
+ul {
+  list-style: none;
+}
+
+.dataList__container {
+  position: relative;
+  background-color: #fff;
+  color: #253754;
+  width: 40%;
+  position: absolute;
+  background-color: var(--datalist-detail-backgroundColor);
+  top: 56px;
+  right: 0;
+  width: 192px;
+  border-radius: 5px;
+  padding: 10px;
+  z-index: 1;
+}
+.dataList__container ul li span {
+  font-size: var(--datalist-icon-form-font-size);
+  cursor: pointer;
+  color: var(--form-font-color);
+}
+.dataList__container ul li {
+  padding: 1px 0;
+}
+
+.dataList__container ul li ul li ul li {
+  font-size: var(--datalist-icon-form-font-size);
+  cursor: pointer;
+  background-color: var(--datalist-detail-backgroundColor-nested-l2);
+  color: var(--form-font-color);
+}
+.dataList__container ul li ul li ul li {
+  font-size: var(--datalist-icon-form-font-size);
+  cursor: pointer;
+  background-color: var(--datalist-detail-backgroundColor-nested-l2);
+}
+.dataList__container ul li ul li ul li:hover {
+  color: var(--form-search-p-hover-color);
+}
+.dataList__container ul li ul li ul {
+  background-color: var(--datalist-detail-backgroundColor-nested-l2);
+  margin: 5px;
+  padding: 8px;
+}
+.dataList__container ul li ul {
+  margin-left: 10px;
+  padding: 5px 0;
+  background-color: var(--datalist-detail-backgroundColor-nested-l1);
+  margin: 10px 3px;
+}
+.dataList__container ul li span:hover {
+  color: var(--form-search-p-hover-color);
+}
+.dataList__container ul li ul li {
+  margin-left: 8px 0 10px 0;
+  padding: 2px 0;
+  cursor: pointer;
+}
+.dataList__container ul li svg {
+  margin: 0px 2px;
+  cursor: pointer;
+  color: var(--form-font-color);
+  width: var(--form--svg--width);
+}
+
+@media (max-width: 576px) {
+  .dataList__container {
+    right: 14px;
+  }
+}

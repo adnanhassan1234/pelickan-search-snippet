@@ -1,0 +1,18 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: vs-vultture-search-snippet
+  namespace: vultture
+spec:
+  hosts:
+    - snippet.test.pelickandespatch.com
+  gateways:
+    - istio-system/http-gateway
+  http:
+    - match:
+        - uri:
+      route:
+        - destination:
+            host: vultture-search-snippet-svc
+            port:
+              number: 8090

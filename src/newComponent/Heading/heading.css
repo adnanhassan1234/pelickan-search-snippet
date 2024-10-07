@@ -1,0 +1,12 @@
+.heading {
+  background: #f8f8ff;
+  padding: 15px;
+}
+.heading h2 {
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 17px;
+  text-align: left;
+  color: #1e1e1e;
+  margin-left: 10px;
+}

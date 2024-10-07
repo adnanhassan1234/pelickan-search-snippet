@@ -1,0 +1,147 @@
+.booking__container {
+  padding: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.result__cars__box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  text-align: center;
+}
+.cars__box {
+  box-shadow: 0px 0px 10px 0px var(--box-shadow-color);
+  border-radius: 4px;
+  width: 100%;
+  background-color: var(--bg-color);
+}
+.cars__box .title {
+  height: 47px;
+  border-radius: 4px 4px 0px 0px;
+  border-bottom: 1px solid var(--border-color);
+}
+.cars__box .title h5 {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 47px;
+}
+.cars__box .booking_card {
+  padding: 18px 18px 6px 18px;
+}
+.cars__box .booking_card h4 {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 18px;
+  text-align: center;
+  color: var(--booking-service-color);
+  margin-top: 11px;
+}
+.booking_card img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: 4px;
+  height: 157px;
+}
+.star {
+  margin-top: 4px;
+}
+.star img {
+  width: 21px;
+  height: 21px;
+  margin: 1px;
+}
+.feature {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+.feature .box {
+  padding: 10px 0px;
+  border-radius: 5px;
+  background: var(--box-color);
+  margin: 4px;
+  width: 100%;
+}
+.feature img {
+  width: 14px;
+  height: 16px;
+  top: 321px;
+}
+.feature span {
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 18px;
+  text-align: left;
+}
+.feature .bold {
+  font-weight: bold;
+}
+.booking_price {
+  display: flex;
+  align-items: center;
+}
+.booking_price h2 {
+  font-size: 18px;
+  font-weight: 600 !important;
+  line-height: 24px;
+  text-align: left;
+  font-weight: 500;
+  color: var(--booking-price-color);
+  margin-left: 9px;
+}
+.booking_price .btn {
+  width: 63% !important;
+  border-radius: 5px;
+  border: 1px solid var(--button-hover-color);
+  transform: translate(40px, 3px);
+}
+.booking_price .btn:hover {
+  background-color: var(--button-hover-color);
+  transition: 0.7s;
+}
+@media only screen and (max-width: 1700px) {
+  .booking_price .btn {
+    width: 52% !important;
+  }
+  .feature {
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 1700px) {
+  .feature .box {
+    text-align: left;
+    padding: 10px 12px;
+  }
+  .booking_price .btn {
+    transform: translate(0px, 3px);
+  }
+}
+@media only screen and (max-width: 1220px) {
+  .booking_price {
+    flex-direction: column;
+  }
+  .booking_price .btn {
+    width: 100% !important;
+  }
+  .booking_price {
+    margin-top: 14px;
+    align-items: flex-start;
+  }
+  .booking_price h2 {
+    margin-left: 8px;
+  }
+}
+@media only screen and (max-width: 967px) {
+  .result__cars__box {
+    grid-template-columns: repeat(2, 1fr);
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 767px) {
+  .result__cars__box {
+    grid-template-columns: repeat(1, 1fr);
+    gap: 15px;
+  }
+}
